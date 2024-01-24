@@ -25,6 +25,9 @@ def validate(plugin_config, plugin_settings):
         command = "dbus-send"
     elif utility.DESKTOP_ENVIRONMENT == "sway":
         command = "swayidle"
+    elif utility.IS_WAYLAND:
+        # no command needed
+        return None
     else:
         command = "xprintidle"
     if not utility.command_exist(command):
