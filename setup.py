@@ -4,6 +4,7 @@ import setuptools
 
 
 requires = [
+    'rust_wl_bindings',
     'babel',
     'psutil',
     'croniter',
