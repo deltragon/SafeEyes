@@ -103,7 +103,7 @@ def __start_ext_idle_monitor():
     global ext_idle_notification_obj
 
     display = Gdk.Display.get_default()
-    if not isinstance(display, GdkWayland.WaylandDisplay):
+    if not display or not isinstance(display, GdkWayland.WaylandDisplay):
         raise Exception("Not a wayland display")
 
     import rust_wl_bindings
