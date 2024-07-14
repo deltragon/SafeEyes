@@ -24,9 +24,6 @@ import os
 
 from safeeyes import utility
 
-ABOUT_DIALOG_GLADE = os.path.join(utility.BIN_DIRECTORY, "glade/about_dialog.glade")
-
-
 class AboutDialog:
     """
     AboutDialog reads the about_dialog.glade and build the user interface using that file.
@@ -34,7 +31,7 @@ class AboutDialog:
     """
 
     def __init__(self, version):
-        builder = utility.create_gtk_builder(ABOUT_DIALOG_GLADE)
+        builder = utility.create_gtk_builder('about_dialog.glade')
         builder.connect_signals(self)
         self.window = builder.get_object('window_about')
         builder.get_object('lbl_decription').set_label(_("Safe Eyes protects your eyes from eye strain (asthenopia) by reminding you to take breaks while you're working long hours at the computer"))

@@ -32,9 +32,6 @@ from gi.repository import Gdk
 from gi.repository import GLib
 from gi.repository import Gtk
 
-BREAK_SCREEN_GLADE = os.path.join(utility.BIN_DIRECTORY, "glade/break_screen.glade")
-
-
 class BreakScreen:
     """
     The fullscreen window which prevents users from using the computer.
@@ -166,7 +163,7 @@ class BreakScreen:
             y = monitor_gemoetry.y
 
             builder = Gtk.Builder()
-            builder.add_from_file(BREAK_SCREEN_GLADE)
+            builder.add_from_string(utility.get_glade_file('break_screen.glade'))
             builder.connect_signals(self)
 
             window = builder.get_object("window_main")

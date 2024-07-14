@@ -23,6 +23,7 @@ This module contains utility functions for Safe Eyes and its plugins.
 import errno
 import inspect
 import importlib
+import importlib.resources
 import json
 import locale
 import logging
@@ -46,6 +47,10 @@ from packaging.version import parse
 
 gi.require_version('Gdk', '3.0')
 
+def _get_resource(filename):
+    files = importlib.resources.files('safeeyes')
+    return files.joinpath(filename)
+
 BIN_DIRECTORY = os.path.dirname(os.path.realpath(__file__))
 HOME_DIRECTORY = os.environ.get('HOME') or os.path.expanduser('~')
 CONFIG_DIRECTORY = os.path.join(os.environ.get(
@@ -55,9 +60,8 @@ CONFIG_FILE_PATH = os.path.join(CONFIG_DIRECTORY, 'safeeyes.json')
 CONFIG_RESOURCE = os.path.join(CONFIG_DIRECTORY, 'resource')
 SESSION_FILE_PATH = os.path.join(CONFIG_DIRECTORY, 'session.json')
 STYLE_SHEET_PATH = os.path.join(STYLE_SHEET_DIRECTORY, 'safeeyes_style.css')
-SYSTEM_CONFIG_FILE_PATH = os.path.join(BIN_DIRECTORY, "config/safeeyes.json")
-SYSTEM_STYLE_SHEET_PATH = os.path.join(
-    BIN_DIRECTORY, "config/style/safeeyes_style.css")
+SYSTEM_CONFIG_FILE_PATH = _get_resource("config/safeeyes.json")
+SYSTEM_STYLE_SHEET_PATH = _get_resource("config/style/safeeyes_style.css")
 LOG_FILE_PATH = os.path.join(HOME_DIRECTORY, 'safeeyes.log')
 SYSTEM_PLUGINS_DIR = os.path.join(BIN_DIRECTORY, 'plugins')
 USER_PLUGINS_DIR = os.path.join(CONFIG_DIRECTORY, 'plugins')
@@ -84,6 +88,10 @@ def get_resource_path(resource_name):
             resource_location = None
 
     return resource_location
+
+def get_glade_file(filename):
+    files = importlib.resources.files('safeeyes')
+    return files.joinpath('glade').joinpath(filename).read_text()
 
 
 def start_thread(target_function, **args):
@@ -369,7 +377,8 @@ def initialize_safeeyes():
         mkdir(CONFIG_DIRECTORY)
 
     # Copy the safeeyes.json
-    shutil.copy2(SYSTEM_CONFIG_FILE_PATH, CONFIG_FILE_PATH)
+    with open(CONFIG_FILE_PATH, 'w') as conf_file:
+        conf_file.write(SYSTEM_CONFIG_FILE_PATH.read_text())
     os.chmod(CONFIG_FILE_PATH, 0o666)
 
     create_user_stylesheet_if_missing()
@@ -384,7 +393,8 @@ def create_user_stylesheet_if_missing():
 
     # Copy the new style sheet
     if not os.path.isfile(STYLE_SHEET_PATH):
-        shutil.copy2(SYSTEM_STYLE_SHEET_PATH, STYLE_SHEET_PATH)
+        with open(STYLE_SHEET_PATH, 'w') as style_sheet_file:
+            style_sheet_file.write(SYSTEM_STYLE_SHEET_PATH.read_text())
         os.chmod(STYLE_SHEET_PATH, 0o666)
 
 def create_startup_entry(force=False):
@@ -489,9 +499,12 @@ def reset_config():
     delete(STYLE_SHEET_PATH)
 
     # Copy the safeeyes.json and safeeyes_style.css
-    shutil.copy2(SYSTEM_CONFIG_FILE_PATH, CONFIG_FILE_PATH)
-    shutil.copy2(SYSTEM_STYLE_SHEET_PATH, STYLE_SHEET_PATH)
-    
+    with open(CONFIG_FILE_PATH, 'w') as conf_file:
+        conf_file.write(SYSTEM_CONFIG_FILE_PATH.read_text())
+
+    with open(STYLE_SHEET_PATH, 'w') as style_sheet_file:
+        style_sheet_file.write(SYSTEM_STYLE_SHEET_PATH.read_text())
+
     # Add write permission (e.g. if original file was stored in /nix/store)
     os.chmod(CONFIG_FILE_PATH, 0o666)
     os.chmod(STYLE_SHEET_PATH, 0o666)
@@ -504,7 +517,8 @@ def replace_style_sheet():
     Replace the user style sheet by system style sheet.
     """
     delete(STYLE_SHEET_PATH)
-    shutil.copy2(SYSTEM_STYLE_SHEET_PATH, STYLE_SHEET_PATH)
+    with open(STYLE_SHEET_PATH, 'w') as style_sheet_file:
+        style_sheet_file.write(SYSTEM_STYLE_SHEET_PATH.read_text())
     os.chmod(STYLE_SHEET_PATH, 0o666)
 
 
@@ -645,13 +659,13 @@ def open_session():
     return session
 
 
-def create_gtk_builder(glade_file):
+def create_gtk_builder(glade_file_name):
     """
     Create a Gtk builder and load the glade file.
     """
     builder = Gtk.Builder()
     builder.set_translation_domain('safeeyes')
-    builder.add_from_file(glade_file)
+    builder.add_from_string(get_glade_file(glade_file_name))
     # Tranlslate all sub components
     for obj in builder.get_objects():
         if (not isinstance(obj, Gtk.SeparatorMenuItem)) and hasattr(obj, "get_label"):
