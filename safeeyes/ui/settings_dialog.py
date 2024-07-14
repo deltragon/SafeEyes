@@ -17,7 +17,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import math
-import os
 
 import gi
 from safeeyes import utility
@@ -28,27 +27,15 @@ from gi.repository import Gtk, Gio
 from gi.repository import GdkPixbuf
 
 
-SETTINGS_DIALOG_GLADE = os.path.join(
-    utility.BIN_DIRECTORY, "glade/settings_dialog.glade"
-)
-SETTINGS_DIALOG_PLUGIN_GLADE = os.path.join(
-    utility.BIN_DIRECTORY, "glade/settings_plugin.glade"
-)
-SETTINGS_DIALOG_BREAK_GLADE = os.path.join(
-    utility.BIN_DIRECTORY, "glade/settings_break.glade"
-)
-SETTINGS_DIALOG_NEW_BREAK_GLADE = os.path.join(
-    utility.BIN_DIRECTORY, "glade/new_break.glade"
-)
-SETTINGS_BREAK_ITEM_GLADE = os.path.join(
-    utility.BIN_DIRECTORY, "glade/item_break.glade"
-)
-SETTINGS_PLUGIN_ITEM_GLADE = os.path.join(
-    utility.BIN_DIRECTORY, "glade/item_plugin.glade"
-)
-SETTINGS_ITEM_INT_GLADE = os.path.join(utility.BIN_DIRECTORY, "glade/item_int.glade")
-SETTINGS_ITEM_TEXT_GLADE = os.path.join(utility.BIN_DIRECTORY, "glade/item_text.glade")
-SETTINGS_ITEM_BOOL_GLADE = os.path.join(utility.BIN_DIRECTORY, "glade/item_bool.glade")
+SETTINGS_DIALOG_GLADE = "settings_dialog.glade"
+SETTINGS_DIALOG_PLUGIN_GLADE = "settings_plugin.glade"
+SETTINGS_DIALOG_BREAK_GLADE = "settings_break.glade"
+SETTINGS_DIALOG_NEW_BREAK_GLADE = "new_break.glade"
+SETTINGS_BREAK_ITEM_GLADE = "item_break.glade"
+SETTINGS_PLUGIN_ITEM_GLADE = "item_plugin.glade"
+SETTINGS_ITEM_INT_GLADE = "item_int.glade"
+SETTINGS_ITEM_TEXT_GLADE = "item_text.glade"
+SETTINGS_ITEM_BOOL_GLADE = "item_bool.glade"
 
 
 class SettingsDialog:

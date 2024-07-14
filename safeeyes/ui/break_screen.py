@@ -18,7 +18,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import logging
-import os
 import time
 
 import gi
@@ -32,8 +31,6 @@ from gi.repository import Gdk
 from gi.repository import GLib
 from gi.repository import Gtk
 from gi.repository import GdkX11
-
-BREAK_SCREEN_GLADE = os.path.join(utility.BIN_DIRECTORY, "glade/break_screen.glade")
 
 
 class BreakScreen:
@@ -151,7 +148,8 @@ class BreakScreen:
 
         for monitor in monitors:
             builder = Gtk.Builder()
-            builder.add_from_file(BREAK_SCREEN_GLADE)
+            builder.connect_signals(self)
+            builder.add_from_string(utility.get_glade_file("break_screen.glade"))
 
             window = builder.get_object("window_main")
             window.set_application(self.application)

@@ -165,7 +165,7 @@ class SafeEyes(Gtk.Application):
         elif self.cli_args.take_break:
             self.take_break()
 
-    def _initialize_styles(self):
+    def _initialize_styles(self) -> None:
         utility.load_css_file(
             utility.SYSTEM_STYLE_SHEET_PATH, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
         )

@@ -18,11 +18,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """This module creates the AboutDialog which shows the version and license."""
 
-import os
-
 from safeeyes import utility
-
-ABOUT_DIALOG_GLADE = os.path.join(utility.BIN_DIRECTORY, "glade/about_dialog.glade")
 
 
 class AboutDialog:
@@ -34,7 +30,7 @@ class AboutDialog:
     """
 
     def __init__(self, application, version):
-        builder = utility.create_gtk_builder(ABOUT_DIALOG_GLADE)
+        builder = utility.create_gtk_builder("about_dialog.glade")
         self.window = builder.get_object("window_about")
         self.window.set_application(application)
 

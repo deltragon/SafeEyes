@@ -22,6 +22,7 @@ import errno
 import hashlib
 import inspect
 import importlib
+import importlib.resources
 import json
 import locale
 import logging
@@ -31,6 +32,7 @@ import sys
 import shutil
 import subprocess
 import threading
+import typing
 from logging.handlers import RotatingFileHandler
 from pathlib import Path
 
@@ -47,6 +49,12 @@ from gi.repository import GLib
 from gi.repository import GdkPixbuf
 from packaging.version import parse
 
+
+def _get_resource(filename) -> importlib.resources.abc.Traversable:
+    files = importlib.resources.files("safeeyes")
+    return files.joinpath(filename)
+
+
 BIN_DIRECTORY = os.path.dirname(os.path.realpath(__file__))
 HOME_DIRECTORY = os.environ.get("HOME") or os.path.expanduser("~")
 CONFIG_DIRECTORY = os.path.join(
@@ -61,8 +69,8 @@ OLD_STYLE_SHEET_PATH = os.path.join(STYLE_SHEET_DIRECTORY, "safeeyes_style.css")
 CUSTOM_STYLE_SHEET_PATH = os.path.join(
     STYLE_SHEET_DIRECTORY, "safeeyes_custom_style.css"
 )
-SYSTEM_CONFIG_FILE_PATH = os.path.join(BIN_DIRECTORY, "config/safeeyes.json")
-SYSTEM_STYLE_SHEET_PATH = os.path.join(BIN_DIRECTORY, "config/style/safeeyes_style.css")
+SYSTEM_CONFIG_FILE_PATH = _get_resource("config/safeeyes.json")
+SYSTEM_STYLE_SHEET_PATH = _get_resource("config/style/safeeyes_style.css")
 LOG_FILE_PATH = os.path.join(HOME_DIRECTORY, "safeeyes.log")
 SYSTEM_PLUGINS_DIR = os.path.join(BIN_DIRECTORY, "plugins")
 USER_PLUGINS_DIR = os.path.join(CONFIG_DIRECTORY, "plugins")
@@ -92,6 +100,11 @@ def get_resource_path(resource_name):
             resource_location = None
 
     return resource_location
+
+
+def get_glade_file(filename):
+    files = importlib.resources.files("safeeyes")
+    return files.joinpath("glade").joinpath(filename).read_text()
 
 
 def start_thread(target_function, **args):
@@ -388,16 +401,28 @@ def sha256sum(filename):
     return h.hexdigest()
 
 
-def load_css_file(style_sheet_path, priority, required=True):
-    if not os.path.isfile(style_sheet_path):
-        if required:
-            logging.warning("Failed loading required stylesheet")
-        return
+def load_css_file(
+    style_sheet: typing.Union[str, importlib.resources.abc.Traversable],
+    priority,
+    required=True,
+):
+    display = Gdk.Display.get_default()
+
+    if display is None:
+        raise Exception("Gdk.Display not found, this should never happen")
 
     css_provider = Gtk.CssProvider()
-    css_provider.load_from_path(style_sheet_path)
 
-    display = Gdk.Display.get_default()
+    if isinstance(style_sheet, str):
+        if not os.path.isfile(style_sheet):
+            if required:
+                logging.warning("Failed loading required stylesheet")
+            return
+
+        css_provider.load_from_path(style_sheet)
+    else:
+        css_provider.load_from_string(style_sheet.read_text())
+
     Gtk.StyleContext.add_provider_for_display(display, css_provider, priority)
 
 
@@ -414,7 +439,8 @@ def initialize_safeeyes():
         mkdir(CONFIG_DIRECTORY)
 
     # Copy the safeeyes.json
-    shutil.copy2(SYSTEM_CONFIG_FILE_PATH, CONFIG_FILE_PATH)
+    with open(CONFIG_FILE_PATH, "w") as conf_file:
+        conf_file.write(SYSTEM_CONFIG_FILE_PATH.read_text())
     os.chmod(CONFIG_FILE_PATH, 0o666)
 
     # initialize_safeeyes gets called when the configuration file is not present, which
@@ -569,7 +595,8 @@ def reset_config():
     delete(CONFIG_FILE_PATH)
 
     # Copy the safeeyes.json and safeeyes_style.css
-    shutil.copy2(SYSTEM_CONFIG_FILE_PATH, CONFIG_FILE_PATH)
+    with open(CONFIG_FILE_PATH, "w") as conf_file:
+        conf_file.write(SYSTEM_CONFIG_FILE_PATH.read_text())
 
     # Add write permission (e.g. if original file was stored in /nix/store)
     os.chmod(CONFIG_FILE_PATH, 0o666)
@@ -708,11 +735,11 @@ def open_session():
     return session
 
 
-def create_gtk_builder(glade_file):
+def create_gtk_builder(glade_file_name):
     """Create a Gtk builder and load the glade file."""
     builder = Gtk.Builder()
     builder.set_translation_domain("safeeyes")
-    builder.add_from_file(glade_file)
+    builder.add_from_string(get_glade_file(glade_file_name))
     # Tranlslate all sub components
     for obj in builder.get_objects():
         if hasattr(obj, "get_label"):
