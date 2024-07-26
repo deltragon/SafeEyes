@@ -18,6 +18,7 @@
 
 import datetime
 from safeeyes import utility
+from safeeyes.translations import translate as _
 
 def validate(plugin_config, plugin_settings):
     if not utility.module_exist("croniter"):

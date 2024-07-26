@@ -20,20 +20,17 @@
 Safe Eyes is a utility to remind you to take break frequently to protect your eyes from eye strain.
 """
 import argparse
-import gettext
-import locale
 import logging
 import signal
 import sys
 
 import psutil
-from safeeyes import utility
+from safeeyes import utility, translations
+from safeeyes.translations import translate as _
 from safeeyes.model import Config
 from safeeyes.safeeyes import SafeEyes
 from safeeyes.safeeyes import SAFE_EYES_VERSION
 from safeeyes.rpc import RPCClient
-
-gettext.install('safeeyes', utility.LOCALE_PATH)
 
 
 def __running():
@@ -67,13 +64,7 @@ def main():
     """
     Start the Safe Eyes.
     """
-    system_locale = gettext.translation('safeeyes', localedir=utility.LOCALE_PATH, languages=[utility.system_locale(), 'en_US'], fallback=True)
-    system_locale.install()
-    try:
-        # locale.bindtextdomain is required for Glade files
-        locale.bindtextdomain('safeeyes', utility.LOCALE_PATH)
-    except AttributeError:
-        logging.warning('installed python\'s gettext module does not support locale.bindtextdomain. locale.bindtextdomain is required for Glade files')
+    system_locale = translations.setup()
 
 
     parser = argparse.ArgumentParser(prog='safeeyes')

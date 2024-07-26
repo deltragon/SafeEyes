@@ -43,6 +43,7 @@ from gi.repository import Gtk
 from gi.repository import GLib
 from gi.repository import GdkPixbuf
 from packaging.version import parse
+from safeeyes.translations import translate as _
 
 gi.require_version('Gdk', '3.0')
 

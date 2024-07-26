@@ -28,6 +28,7 @@ from dataclasses import dataclass
 from packaging.version import parse
 
 from safeeyes import utility
+from safeeyes.translations import translate as _
 
 
 class Break:

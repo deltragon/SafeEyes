@@ -23,6 +23,7 @@ Show health statistics on the break screen.
 import croniter
 import datetime
 import logging
+from safeeyes.translations import translate as _
 
 context = None
 session = None
