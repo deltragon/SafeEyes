@@ -42,6 +42,7 @@ from gi.repository import Gtk
 from gi.repository import GLib
 from gi.repository import GdkPixbuf
 from packaging.version import parse
+from safeeyes.translations import translate as _
 
 gi.require_version("Gdk", "3.0")
 
@@ -550,7 +551,7 @@ def initialize_logging(debug):
     if debug:
         # Log to file
         file_handler = RotatingFileHandler(
-            LOG_FILE_PATH, maxBytes=1024 * 1024, backupCount=5, encoding=None, delay=0
+            LOG_FILE_PATH, maxBytes=1024 * 1024, backupCount=5, encoding=None
         )
         file_handler.setFormatter(log_formatter)
         # Log to console

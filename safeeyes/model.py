@@ -28,6 +28,7 @@ from dataclasses import dataclass
 from packaging.version import parse
 
 from safeeyes import utility
+from safeeyes.translations import translate as _
 
 
 class Break:
@@ -103,7 +104,7 @@ class BreakQueue:
                 current_break = self.get_break()
                 if last_break != current_break.name:
                     brk = self.next()
-                    while brk != current_break and brk.name != last_break:
+                    while brk != current_break and brk is not None and brk.name != last_break:
                         brk = self.next()
 
     def get_break(self, break_type=None):

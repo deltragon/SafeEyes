@@ -24,6 +24,7 @@ import re
 
 from safeeyes import utility
 from safeeyes.model import State
+from safeeyes.translations import translate as _
 
 """
 Safe Eyes smart pause plugin

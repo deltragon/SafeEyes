@@ -22,6 +22,7 @@ import os
 import gi
 from safeeyes import utility
 from safeeyes.model import Config, PluginDependency
+from safeeyes.translations import translate as _
 
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk
@@ -511,6 +512,8 @@ class PluginSettingsDialog:
 class BreakSettingsDialog:
     """Builds a settings dialog based on the configuration of a plugin."""
 
+    window: Gtk.Window
+
     def __init__(
         self,
         break_config,
@@ -701,6 +704,19 @@ class BreakSettingsDialog:
 
 class NewBreakDialog:
     """Builds a new break dialog."""
+
+    # TODO: WIP: this here is the issue
+    # the typing does not like that
+    # i have to either fill this with assertions
+    # or switch to the templating mechanism where NewBreakDialog inherits from Gtk.Window
+    # ... where i have a wip branch at home already
+    # so that needs to land first for the typing to land
+    # (or be integrated into the typing PR, whichever)
+    # mostly tested with pyright so far since it's the only one i got running properly
+    # oh also a lot of the import translate as _ are still missing
+    # but the typechecker is gonna complain about that anyways so
+    window: Gtk.Window
+    cmb_type: Gtk.Combobox
 
     def __init__(self, parent_config, on_add):
         self.parent_config = parent_config
