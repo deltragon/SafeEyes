@@ -158,7 +158,10 @@ class SafeEyes(Gtk.Application):
             logging.info("Show Settings dialog")
             self.settings_dialog_active = True
             settings_dialog = SettingsDialog(
-                self.config.clone(), self.save_settings)
+                self.config.clone(),
+                self.save_settings,
+                application=self
+            )
             settings_dialog.show()
 
     def show_required_plugin_dialog(self, plugin_id, plugin_name, message):
