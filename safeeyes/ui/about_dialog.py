@@ -21,42 +21,48 @@ This module creates the AboutDialog which shows the version and license.
 """
 
 import os
+import gi
+gi.require_version('Gtk', '3.0')
+from gi.repository import Gtk
 
 from safeeyes import utility
 
 ABOUT_DIALOG_GLADE = os.path.join(utility.BIN_DIRECTORY, "glade/about_dialog.glade")
 
 
-class AboutDialog:
+@Gtk.Template(filename=ABOUT_DIALOG_GLADE)
+class AboutDialog(Gtk.ApplicationWindow):
     """
     AboutDialog reads the about_dialog.glade and build the user interface using that file.
     It shows the application name with version, a small description, license and the GitHub url.
     """
 
-    def __init__(self, version):
-        builder = utility.create_gtk_builder(ABOUT_DIALOG_GLADE)
-        builder.connect_signals(self)
-        self.window = builder.get_object('window_about')
-        builder.get_object('lbl_decription').set_label(_("Safe Eyes protects your eyes from eye strain (asthenopia) by reminding you to take breaks while you're working long hours at the computer"))
-        builder.get_object('lbl_license').set_label(_('License') + ':')
+    __gtype_name__ = "AboutDialog"
+
+    lbl_app_name = Gtk.Template.Child()
+
+    def __init__(self, version, application):
+        super().__init__(application=application)
 
         # Set the version at the runtime
-        builder.get_object('lbl_app_name').set_label('Safe Eyes ' + version)
+        self.lbl_app_name.set_label('Safe Eyes ' + version)
 
     def show(self):
         """
         Show the About dialog.
         """
-        self.window.show_all()
+        self.show_all()
 
+    @Gtk.Template.Callback()
     def on_window_delete(self, *args):
         """
         Window close event handler.
         """
-        self.window.destroy()
+        self.destroy()
 
+    @Gtk.Template.Callback()
     def on_close_clicked(self, *args):
         """
         Close button click event handler.
         """
-        self.window.destroy()
+        self.destroy()

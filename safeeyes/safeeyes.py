@@ -191,7 +191,7 @@ class SafeEyes(Gtk.Application):
         Listen to tray icon About action and send the signal to About dialog.
         """
         logging.info("Show About dialog")
-        about_dialog = AboutDialog(SAFE_EYES_VERSION)
+        about_dialog = AboutDialog(SAFE_EYES_VERSION, application=self)
         about_dialog.show()
 
     def quit(self):
