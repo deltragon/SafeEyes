@@ -41,9 +41,8 @@ class BreakScreen:
     This class reads the break_screen.glade and build the user interface.
     """
 
-    def __init__(self, context, on_skipped, on_postponed, style_sheet_path):
+    def __init__(self, application, context, on_skipped, on_postponed, style_sheet_path):
         self.context = context
-        self.count_labels = []
         self.display = Display()
         self.enable_postpone = False
         self.enable_shortcut = False
@@ -55,6 +54,7 @@ class BreakScreen:
         self.shortcut_disable_time = 2
         self.strict_break = False
         self.windows = []
+        self.application = application
 
         # Initialize the theme
         css_provider = Gtk.CssProvider()
@@ -87,13 +87,6 @@ class BreakScreen:
         """
         logging.info("User postponed the break")
         self.on_postponed()
-        self.close()
-
-    def on_window_delete(self, *args):
-        """
-        Window close event handler.
-        """
-        logging.info("Closing the break screen")
         self.close()
 
     def on_skip_clicked(self, button):
@@ -136,14 +129,6 @@ class BreakScreen:
         # Destroy other windows if exists
         GLib.idle_add(lambda: self.__destroy_all_screens())
 
-    def __tray_action(self, button, tray_action):
-        """
-        Tray action handler.
-        Hides all toolbar buttons for this action and call the action provided by the plugin.
-        """
-        tray_action.reset()
-        tray_action.action()
-
     def __show_break_screen(self, message, image_path, widget, tray_actions):
         """
         Show an empty break screen on all screens.
@@ -165,56 +150,22 @@ class BreakScreen:
             x = monitor_gemoetry.x
             y = monitor_gemoetry.y
 
-            builder = Gtk.Builder()
-            builder.add_from_file(BREAK_SCREEN_GLADE)
-            builder.connect_signals(self)
+            window = BreakScreenWindow(
+                self.application,
+                message,
+                image_path,
+                widget,
+                tray_actions,
+                lambda: self.close(),
+                self.enable_postpone and not postpone_button_disabled,
+                self.on_postpone_clicked,
+                not self.strict_break and not skip_button_disabled,
+                self.on_skip_clicked
+            )
 
-            window = builder.get_object("window_main")
             window.set_title("SafeEyes-" + str(monitor_num))
-            lbl_message = builder.get_object("lbl_message")
-            lbl_count = builder.get_object("lbl_count")
-            lbl_widget = builder.get_object("lbl_widget")
-            img_break = builder.get_object("img_break")
-            box_buttons = builder.get_object("box_buttons")
-            toolbar = builder.get_object("toolbar")
-
-            for tray_action in tray_actions:
-                toolbar_button = None
-                if tray_action.system_icon:
-                    toolbar_button = Gtk.ToolButton.new_from_stock(tray_action.get_icon())
-                else:
-                    toolbar_button = Gtk.ToolButton.new(tray_action.get_icon(), tray_action.name)
-                tray_action.add_toolbar_button(toolbar_button)
-                toolbar_button.connect("clicked", lambda button, action: self.__tray_action(button, action), tray_action)
-                toolbar_button.set_tooltip_text(_(tray_action.name))
-                toolbar.add(toolbar_button)
-                toolbar_button.show()
-
-            # Add the buttons
-            if self.enable_postpone and not postpone_button_disabled:
-                # Add postpone button
-                btn_postpone = Gtk.Button.new_with_label(_('Postpone'))
-                btn_postpone.get_style_context().add_class('btn_postpone')
-                btn_postpone.connect('clicked', self.on_postpone_clicked)
-                btn_postpone.set_visible(True)
-                box_buttons.pack_start(btn_postpone, True, True, 0)
-
-            if not self.strict_break and not skip_button_disabled:
-                # Add the skip button
-                btn_skip = Gtk.Button.new_with_label(_('Skip'))
-                btn_skip.get_style_context().add_class('btn_skip')
-                btn_skip.connect('clicked', self.on_skip_clicked)
-                btn_skip.set_visible(True)
-                box_buttons.pack_start(btn_skip, True, True, 0)
-
-            # Set values
-            if image_path:
-                img_break.set_from_file(image_path)
-            lbl_message.set_label(message)
-            lbl_widget.set_markup(widget)
 
             self.windows.append(window)
-            self.count_labels.append(lbl_count)
 
             # Set visual to apply css theme. It should be called before show method.
             window.set_visual(window.get_screen().get_rgba_visual())
@@ -238,8 +189,8 @@ class BreakScreen:
         """
         Update the countdown on all break screens.
         """
-        for label in self.count_labels:
-            label.set_text(count)
+        for window in self.windows:
+            window.set_count_down(count)
 
     def __lock_keyboard(self):
         """
@@ -285,4 +236,79 @@ class BreakScreen:
         for win in self.windows:
             win.destroy()
         del self.windows[:]
-        del self.count_labels[:]
+
+@Gtk.Template(filename=BREAK_SCREEN_GLADE)
+class BreakScreenWindow(Gtk.Window):
+    __gtype_name__ = "BreakScreenWindow"
+
+    lbl_message = Gtk.Template.Child()
+    lbl_count = Gtk.Template.Child()
+    lbl_widget = Gtk.Template.Child()
+    img_break = Gtk.Template.Child()
+    box_buttons = Gtk.Template.Child()
+    toolbar = Gtk.Template.Child()
+
+    def __init__(
+        self,
+        application, message, image_path, widget, tray_actions,
+        on_close,
+        show_postpone, on_postpone,
+        show_skip, on_skip
+    ):
+        super().__init__(application=application)
+
+        self.on_close = on_close
+
+        for tray_action in tray_actions:
+            toolbar_button = None
+            if tray_action.system_icon:
+                toolbar_button = Gtk.ToolButton.new_from_stock(tray_action.get_icon())
+            else:
+                toolbar_button = Gtk.ToolButton.new(tray_action.get_icon(), tray_action.name)
+            tray_action.add_toolbar_button(toolbar_button)
+            toolbar_button.connect("clicked", lambda button, action: self.__tray_action(button, action), tray_action)
+            toolbar_button.set_tooltip_text(_(tray_action.name))
+            self.toolbar.add(toolbar_button)
+            toolbar_button.show()
+
+        # Add the buttons
+        if show_postpone:
+            # Add postpone button
+            btn_postpone = Gtk.Button.new_with_label(_('Postpone'))
+            btn_postpone.get_style_context().add_class('btn_postpone')
+            btn_postpone.connect('clicked', on_postpone)
+            btn_postpone.set_visible(True)
+            self.box_buttons.pack_start(btn_postpone, True, True, 0)
+
+        if show_skip:
+            # Add the skip button
+            btn_skip = Gtk.Button.new_with_label(_('Skip'))
+            btn_skip.get_style_context().add_class('btn_skip')
+            btn_skip.connect('clicked', on_skip)
+            btn_skip.set_visible(True)
+            self.box_buttons.pack_start(btn_skip, True, True, 0)
+
+        # Set values
+        if image_path:
+            self.img_break.set_from_file(image_path)
+        self.lbl_message.set_label(message)
+        self.lbl_widget.set_markup(widget)
+
+    def set_count_down(self, count):
+        self.lbl_count.set_text(count)
+
+    def __tray_action(self, button, tray_action):
+        """
+        Tray action handler.
+        Hides all toolbar buttons for this action and call the action provided by the plugin.
+        """
+        tray_action.reset()
+        tray_action.action()
+
+    @Gtk.Template.Callback()
+    def on_window_delete(self, *args):
+        """
+        Window close event handler.
+        """
+        logging.info("Closing the break screen")
+        self.on_close()

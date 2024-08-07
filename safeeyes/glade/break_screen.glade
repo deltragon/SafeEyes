@@ -19,9 +19,9 @@
 ~ You should have received a copy of the GNU General Public License
 ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<interface>
+<interface domain="safeyees">
   <requires lib="gtk+" version="3.12"/>
-  <object class="GtkWindow" id="window_main">
+  <template parent="GtkWindow" class="BreakScreenWindow">
     <property name="can_focus">False</property>
     <property name="window_position">center</property>
     <property name="hide_titlebar_when_maximized">True</property>
@@ -237,5 +237,5 @@
     <style>
       <class name="window_main"/>
     </style>
-  </object>
+  </template>
 </interface>

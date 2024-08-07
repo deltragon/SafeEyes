@@ -100,7 +100,8 @@ class SafeEyes(Gtk.Application):
             self.context['session'] = {'plugin': {}}
 
         self.break_screen = BreakScreen(
-            self.context, self.on_skipped, self.on_postponed, utility.STYLE_SHEET_PATH)
+            self, self.context, self.on_skipped, self.on_postponed, utility.STYLE_SHEET_PATH
+        )
         self.break_screen.initialize(self.config)
         self.plugins_manager = PluginManager()
         self.safe_eyes_core = SafeEyesCore(self.context)
