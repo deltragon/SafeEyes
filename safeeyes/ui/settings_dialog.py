@@ -422,6 +422,58 @@ class PluginItem(Gtk.Box):
             self.on_properties()
 
 
+@Gtk.Template(filename=SETTINGS_ITEM_INT_GLADE)
+class IntItem(Gtk.Box):
+    __gtype_name__ = "IntItem"
+
+    lbl_name = Gtk.Template.Child()
+    spin_value = Gtk.Template.Child()
+
+    def __init__(self, name, value, min_value, max_value):
+        super().__init__()
+
+        self.lbl_name.set_label(_(name))
+        self.spin_value.set_range(min_value, max_value)
+        self.spin_value.set_value(value)
+
+    def get_value(self):
+        return self.spin_value.get_value()
+
+
+@Gtk.Template(filename=SETTINGS_ITEM_TEXT_GLADE)
+class TextItem(Gtk.Box):
+    __gtype_name__ = "TextItem"
+
+    lbl_name = Gtk.Template.Child()
+    txt_value = Gtk.Template.Child()
+
+    def __init__(self, name, value):
+        super().__init__()
+
+        self.lbl_name.set_label(_(name))
+        self.txt_value.set_text(value)
+
+    def get_value(self):
+        return self.txt_value.get_text()
+
+
+@Gtk.Template(filename=SETTINGS_ITEM_BOOL_GLADE)
+class BoolItem(Gtk.Box):
+    __gtype_name__ = "BoolItem"
+
+    lbl_name = Gtk.Template.Child()
+    switch_value = Gtk.Template.Child()
+
+    def __init__(self, name, value):
+        super().__init__()
+
+        self.lbl_name.set_label(_(name))
+        self.switch_value.set_active(value)
+
+    def get_value(self):
+        return self.switch_value.get_active()
+
+
 @Gtk.Template(filename=SETTINGS_DIALOG_PLUGIN_GLADE)
 class PluginSettingsDialog(Gtk.Window):
     """
@@ -440,51 +492,21 @@ class PluginSettingsDialog(Gtk.Window):
 
         for setting in config.get('settings'):
             if setting['type'].upper() == 'INT':
-                self.box_settings.pack_start(self.__load_int_item(setting['label'], setting['id'], setting['safeeyes_config'], setting.get('min', 0), setting.get('max', 120)), False, False, 0)
+                box = IntItem(
+                    setting['label'],
+                    config['active_plugin_config'][setting['id']],
+                    setting.get('min', 0),
+                    setting.get('max', 120)
+                )
             elif setting['type'].upper() == 'TEXT':
-                self.box_settings.pack_start(self.__load_text_item(setting['label'], setting['id'], setting['safeeyes_config']), False, False, 0)
+                box = TextItem(setting['label'], config['active_plugin_config'][setting['id']])
             elif setting['type'].upper() == 'BOOL':
-                self.box_settings.pack_start(self.__load_bool_item(setting['label'], setting['id'], setting['safeeyes_config']), False, False, 0)
+                box = BoolItem(setting['label'], config['active_plugin_config'][setting['id']])
+            else:
+                continue
 
-    def __load_int_item(self, name, key, settings, min_value, max_value):
-        """
-        Load the UI control for int property.
-        """
-        builder = utility.create_gtk_builder(SETTINGS_ITEM_INT_GLADE)
-        builder.get_object('lbl_name').set_label(_(name))
-        spin_value = builder.get_object('spin_value')
-        spin_value.set_range(min_value, max_value)
-        spin_value.set_value(settings[key])
-        box = builder.get_object('box')
-        box.set_visible(True)
-        self.property_controls.append({'key': key, 'settings': settings, 'value': spin_value.get_value})
-        return box
-
-    def __load_text_item(self, name, key, settings):
-        """
-        Load the UI control for text property.
-        """
-        builder = utility.create_gtk_builder(SETTINGS_ITEM_TEXT_GLADE)
-        builder.get_object('lbl_name').set_label(_(name))
-        txt_value = builder.get_object('txt_value')
-        txt_value.set_text(settings[key])
-        box = builder.get_object('box')
-        box.set_visible(True)
-        self.property_controls.append({'key': key, 'settings': settings, 'value': txt_value.get_text})
-        return box
-
-    def __load_bool_item(self, name, key, settings):
-        """
-        Load the UI control for boolean property.
-        """
-        builder = utility.create_gtk_builder(SETTINGS_ITEM_BOOL_GLADE)
-        builder.get_object('lbl_name').set_label(_(name))
-        switch_value = builder.get_object('switch_value')
-        switch_value.set_active(settings[key])
-        box = builder.get_object('box')
-        box.set_visible(True)
-        self.property_controls.append({'key': key, 'settings': settings, 'value': switch_value.get_active})
-        return box
+            self.property_controls.append({'key': setting['id'], 'box': box})
+            self.box_settings.pack_start(box, False, False, 0)
 
     @Gtk.Template.Callback()
     def on_window_delete(self, *args):
@@ -492,7 +514,7 @@ class PluginSettingsDialog(Gtk.Window):
         Event handler for Properties dialog close action.
         """
         for property_control in self.property_controls:
-            property_control['settings'][property_control['key']] = property_control['value']()
+            self.config['active_plugin_config'][property_control['key']] = property_control['box'].get_value()
         self.destroy()
 
     def show(self):
