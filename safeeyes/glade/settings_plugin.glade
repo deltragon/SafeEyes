@@ -19,9 +19,9 @@
 ~ You should have received a copy of the GNU General Public License
 ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<interface>
+<interface domain="safeeyes">
   <requires lib="gtk+" version="3.12"/>
-  <object class="GtkWindow" id="dialog_settings_plugin">
+  <template parent="GtkWindow" class="PluginSettingsDialog">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Plugin Settings</property>
     <property name="resizable">False</property>
@@ -55,5 +55,5 @@
         </child>
       </object>
     </child>
-  </object>
+  </template>
 </interface>
