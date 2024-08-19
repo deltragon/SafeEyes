@@ -19,7 +19,7 @@
 ~ You should have received a copy of the GNU General Public License
 ~ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<interface>
+<interface domain="safeeyes">
   <requires lib="gtk+" version="3.12"/>
   <object class="GtkImage" id="img_properties">
     <property name="visible">True</property>
@@ -31,7 +31,7 @@
     <property name="can_focus">False</property>
     <property name="icon-name">_Cancel</property>
   </object>
-  <object class="GtkBox" id="box">
+  <template parent="GtkBox" class="PluginItem">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="margin_left">5</property>
@@ -138,6 +138,7 @@
             <property name="image">img_disable</property>
             <property name="tooltip-text" translatable="yes">Disable permanently</property>
             <property name="always_show_image">True</property>
+            <signal name="clicked" handler="on_disable_errored" swapped="no"/>
             <style>
               <class name="btn_circle"/>
             </style>
@@ -152,6 +153,7 @@
             <property name="valign">center</property>
             <property name="image">img_properties</property>
             <property name="always_show_image">True</property>
+            <signal name="clicked" handler="on_properties_clicked" swapped="no"/>
             <style>
               <class name="btn_circle"/>
             </style>
@@ -164,5 +166,5 @@
         <property name="position">2</property>
       </packing>
     </child>
-  </object>
+  </template>
 </interface>

@@ -1,0 +1,36 @@
+2024-08-09 16:49:18 INFO Initializing file watching service...
+2024-08-09 16:49:18 INFO Connecting to watchman...
+2024-08-09 16:49:18 INFO Established watchman connection.
+2024-08-09 16:49:18 INFO Request watchman subscription at /home/mel/workspace/SafeEyes
+2024-08-09 16:49:18 INFO Initializing shared memory (heap_size: 8589934592, dep_table_pow: 27, hash_table_pow: 26)
+2024-08-09 16:49:18 INFO Server has started listening on socket `/tmp/pyre_server_0cd21fb830d4d73b.sock`
+2024-08-09 16:49:18 INFO Initializing server state from scratch...
+2024-08-09 16:49:18 INFO Building module tracker...
+2024-08-09 16:49:18 PERFORMANCE Module tracker built: 0.217s
+2024-08-09 16:49:18 PERFORMANCE Full environment built: 0.317s
+2024-08-09 16:49:18 INFO Collecting all definitions...
+2024-08-09 16:49:19 PERFORMANCE Collected definitions (defines: 406): 0.204s
+2024-08-09 16:49:19 INFO Checking 406 functions...
+2024-08-09 16:49:25 PROGRESS Processed 204 of 406 functions
+2024-08-09 16:49:26 PROGRESS Processed 406 of 406 functions
+2024-08-09 16:49:26 PERFORMANCE Check_TypeCheck: 7.402s
+2024-08-09 16:49:26 MEMORY Shared memory size post-typecheck (size: 8)
+2024-08-09 16:49:26 PROGRESS Postprocessing 36 sources...
+2024-08-09 16:49:26 PROGRESS Postprocessed 36 of 36 sources
+2024-08-09 16:49:26 PERFORMANCE Check_Postprocessing: 0.014s
+2024-08-09 16:49:26 PERFORMANCE Initialization (binary_version: d9b20d472bec2fdd1a8af17c80cd3b1e2558f34b, initialization method: cold start): 7.938s
+2024-08-09 16:49:26 INFO Server state initialized.
+2024-08-09 16:49:26 SERVER Connection established
+2024-08-09 16:49:26 SERVER Processing request (DisplayTypeError())...
+2024-08-09 16:49:26 PERFORMANCE Server request (binary_version: d9b20d472bec2fdd1a8af17c80cd3b1e2558f34b, request kind: DisplayTypeErrors): 0.000s
+2024-08-09 16:49:26 SERVER Request `(DisplayTypeError())` processed
+2024-08-09 16:49:26 SERVER Connection closed
+2024-08-09 16:49:30 SERVER Connection established
+2024-08-09 16:49:30 SERVER Processing request (DisplayTypeError())...
+2024-08-09 16:49:30 PERFORMANCE Server request (binary_version: d9b20d472bec2fdd1a8af17c80cd3b1e2558f34b, request kind: DisplayTypeErrors): 0.000s
+2024-08-09 16:49:30 SERVER Request `(DisplayTypeError())` processed
+2024-08-09 16:49:30 SERVER Connection closed
+2024-08-17 23:13:34 INFO Server interrupted with signal `sigterm`
+2024-08-17 23:13:35 INFO Server is going down. Cleaning up...
+2024-08-17 23:13:35 INFO Shutting down watchman connection...
+2024-08-17 23:13:35 INFO Server process get interrputed with signal sigterm

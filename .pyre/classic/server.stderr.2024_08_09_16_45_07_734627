@@ -1,0 +1,93 @@
+2024-08-09 16:45:07 INFO Initializing file watching service...
+2024-08-09 16:45:07 INFO Connecting to watchman...
+2024-08-09 16:45:07 INFO Established watchman connection.
+2024-08-09 16:45:07 INFO Request watchman subscription at /home/mel/workspace/SafeEyes
+2024-08-09 16:45:07 INFO Initializing shared memory (heap_size: 8589934592, dep_table_pow: 27, hash_table_pow: 26)
+2024-08-09 16:45:07 INFO Server has started listening on socket `/tmp/pyre_server_0cd21fb830d4d73b.sock`
+2024-08-09 16:45:07 INFO Initializing server state from scratch...
+2024-08-09 16:45:07 INFO Building module tracker...
+2024-08-09 16:45:07 PERFORMANCE Module tracker built: 0.200s
+2024-08-09 16:45:08 PERFORMANCE Full environment built: 0.308s
+2024-08-09 16:45:08 INFO Collecting all definitions...
+2024-08-09 16:45:08 PERFORMANCE Collected definitions (defines: 406): 0.227s
+2024-08-09 16:45:08 INFO Checking 406 functions...
+2024-08-09 16:45:14 PROGRESS Processed 204 of 406 functions
+2024-08-09 16:45:15 PROGRESS Processed 406 of 406 functions
+2024-08-09 16:45:15 PERFORMANCE Check_TypeCheck: 7.493s
+2024-08-09 16:45:15 MEMORY Shared memory size post-typecheck (size: 8)
+2024-08-09 16:45:15 PROGRESS Postprocessing 36 sources...
+2024-08-09 16:45:15 PROGRESS Postprocessed 36 of 36 sources
+2024-08-09 16:45:15 PERFORMANCE Check_Postprocessing: 0.030s
+2024-08-09 16:45:15 PERFORMANCE Initialization (binary_version: d9b20d472bec2fdd1a8af17c80cd3b1e2558f34b, initialization method: cold start): 8.059s
+2024-08-09 16:45:15 INFO Server state initialized.
+2024-08-09 16:45:15 SERVER Processing request (IncrementalUpdate(/home/mel/workspace/SafeEyes/.pytype/pyi/trayicon/plugin.pyi))...
+2024-08-09 16:45:15 INFO Repopulating the environment...
+2024-08-09 16:45:15 SERVER `(ArtifactPath.ArtifactPath
+                               /home/mel/workspace/SafeEyes/.pytype/pyi/trayicon/plugin.pyi)` not found in search path.
+2024-08-09 16:45:15 SERVER Explicit Module Update: (explicit_updates())
+2024-08-09 16:45:15 SERVER Implicit Module Update: (implicit_updates())
+2024-08-09 16:45:15 PERFORMANCE Module tracker updated: 0.000s
+2024-08-09 16:45:15 MEMORY Shared memory size (size: 8)
+2024-08-09 16:45:15 PERFORMANCE Incremental check (number of changed files: 1, number of module tracker updates: 0, number of parser updates: 0, number of rechecked modules: 0, number of re-checked functions: 0): 0.046s
+2024-08-09 16:45:15 PERFORMANCE Server request (binary_version: d9b20d472bec2fdd1a8af17c80cd3b1e2558f34b, request kind: IncrementalCheck): 0.046s
+2024-08-09 16:45:15 SERVER Request `(IncrementalUpdate(/home/mel/workspace/SafeEyes/.pytype/pyi/trayicon/plugin.pyi))` processed
+2024-08-09 16:45:15 SERVER Connection established
+2024-08-09 16:45:15 SERVER Processing request (DisplayTypeError())...
+2024-08-09 16:45:15 PERFORMANCE Server request (binary_version: d9b20d472bec2fdd1a8af17c80cd3b1e2558f34b, request kind: DisplayTypeErrors): 0.001s
+2024-08-09 16:45:15 SERVER Request `(DisplayTypeError())` processed
+2024-08-09 16:45:15 SERVER Connection closed
+2024-08-09 16:46:55 SERVER Processing request (IncrementalUpdate(/home/mel/workspace/SafeEyes/safeeyes/plugins/donotdisturb/plugin.py))...
+2024-08-09 16:46:55 INFO Repopulating the environment...
+2024-08-09 16:46:55 SERVER Explicit Module Update: (explicit_updates((Changed((raw((relative safeeyes/plugins/donotdisturb/plugin.py)(priority 48)))(qualifier(safeeyes plugins donotdisturb plugin))(should_type_check true)))))
+2024-08-09 16:46:55 SERVER Implicit Module Update: (implicit_updates())
+2024-08-09 16:46:55 PERFORMANCE Module tracker updated: 0.000s
+2024-08-09 16:46:56 MEMORY Shared memory size (size: 8)
+2024-08-09 16:46:56 PERFORMANCE Incremental check (number of changed files: 1, number of module tracker updates: 1, number of parser updates: 1, number of rechecked modules: 1, number of re-checked functions: 10): 0.875s
+2024-08-09 16:46:56 PERFORMANCE Server request (binary_version: d9b20d472bec2fdd1a8af17c80cd3b1e2558f34b, request kind: IncrementalCheck): 0.875s
+2024-08-09 16:46:56 SERVER Request `(IncrementalUpdate(/home/mel/workspace/SafeEyes/safeeyes/plugins/donotdisturb/plugin.py))` processed
+2024-08-09 16:47:27 SERVER Connection established
+2024-08-09 16:47:27 SERVER Processing request (DisplayTypeError())...
+2024-08-09 16:47:27 PERFORMANCE Server request (binary_version: d9b20d472bec2fdd1a8af17c80cd3b1e2558f34b, request kind: DisplayTypeErrors): 0.000s
+2024-08-09 16:47:27 SERVER Request `(DisplayTypeError())` processed
+2024-08-09 16:47:27 SERVER Connection closed
+2024-08-09 16:47:51 SERVER Connection established
+2024-08-09 16:47:51 SERVER Processing request (DisplayTypeError())...
+2024-08-09 16:47:51 PERFORMANCE Server request (binary_version: d9b20d472bec2fdd1a8af17c80cd3b1e2558f34b, request kind: DisplayTypeErrors): 0.000s
+2024-08-09 16:47:51 SERVER Request `(DisplayTypeError())` processed
+2024-08-09 16:47:51 SERVER Connection closed
+2024-08-09 16:48:09 SERVER Connection established
+2024-08-09 16:48:09 SERVER Processing request (DisplayTypeError())...
+2024-08-09 16:48:09 PERFORMANCE Server request (binary_version: d9b20d472bec2fdd1a8af17c80cd3b1e2558f34b, request kind: DisplayTypeErrors): 0.000s
+2024-08-09 16:48:09 SERVER Request `(DisplayTypeError())` processed
+2024-08-09 16:48:09 SERVER Connection closed
+2024-08-09 16:48:24 SERVER Processing request (IncrementalUpdate(/home/mel/workspace/SafeEyes/safeeyes/ui/settings_dialog.py))...
+2024-08-09 16:48:24 INFO Repopulating the environment...
+2024-08-09 16:48:24 SERVER Explicit Module Update: (explicit_updates((Changed((raw((relative safeeyes/ui/settings_dialog.py)(priority 48)))(qualifier(safeeyes ui settings_dialog))(should_type_check true)))))
+2024-08-09 16:48:24 SERVER Implicit Module Update: (implicit_updates())
+2024-08-09 16:48:24 PERFORMANCE Module tracker updated: 0.000s
+2024-08-09 16:48:25 MEMORY Shared memory size (size: 8)
+2024-08-09 16:48:25 PERFORMANCE Incremental check (number of changed files: 1, number of module tracker updates: 1, number of parser updates: 1, number of rechecked modules: 1, number of re-checked functions: 8): 0.667s
+2024-08-09 16:48:25 PERFORMANCE Server request (binary_version: d9b20d472bec2fdd1a8af17c80cd3b1e2558f34b, request kind: IncrementalCheck): 0.667s
+2024-08-09 16:48:25 SERVER Request `(IncrementalUpdate(/home/mel/workspace/SafeEyes/safeeyes/ui/settings_dialog.py))` processed
+2024-08-09 16:48:27 SERVER Connection established
+2024-08-09 16:48:27 SERVER Processing request (DisplayTypeError())...
+2024-08-09 16:48:27 PERFORMANCE Server request (binary_version: d9b20d472bec2fdd1a8af17c80cd3b1e2558f34b, request kind: DisplayTypeErrors): 0.000s
+2024-08-09 16:48:27 SERVER Request `(DisplayTypeError())` processed
+2024-08-09 16:48:27 SERVER Connection closed
+2024-08-09 16:48:40 SERVER Processing request (IncrementalUpdate(/home/mel/workspace/SafeEyes/safeeyes/plugins/healthstats/plugin.py))...
+2024-08-09 16:48:40 INFO Repopulating the environment...
+2024-08-09 16:48:40 SERVER Explicit Module Update: (explicit_updates((Changed((raw((relative safeeyes/plugins/healthstats/plugin.py)(priority 48)))(qualifier(safeeyes plugins healthstats plugin))(should_type_check true)))))
+2024-08-09 16:48:40 SERVER Implicit Module Update: (implicit_updates())
+2024-08-09 16:48:40 PERFORMANCE Module tracker updated: 0.000s
+2024-08-09 16:48:40 MEMORY Shared memory size (size: 8)
+2024-08-09 16:48:40 PERFORMANCE Incremental check (number of changed files: 1, number of module tracker updates: 1, number of parser updates: 1, number of rechecked modules: 0, number of re-checked functions: 0): 0.140s
+2024-08-09 16:48:40 PERFORMANCE Server request (binary_version: d9b20d472bec2fdd1a8af17c80cd3b1e2558f34b, request kind: IncrementalCheck): 0.140s
+2024-08-09 16:48:40 SERVER Request `(IncrementalUpdate(/home/mel/workspace/SafeEyes/safeeyes/plugins/healthstats/plugin.py))` processed
+2024-08-09 16:48:42 SERVER Connection established
+2024-08-09 16:48:42 SERVER Processing request (DisplayTypeError())...
+2024-08-09 16:48:42 PERFORMANCE Server request (binary_version: d9b20d472bec2fdd1a8af17c80cd3b1e2558f34b, request kind: DisplayTypeErrors): 0.000s
+2024-08-09 16:48:42 SERVER Request `(DisplayTypeError())` processed
+2024-08-09 16:48:42 SERVER Connection closed
+2024-08-09 16:49:18 SERVER Connection established
+2024-08-09 16:49:18 INFO Server interrupted with signal `sigint`
+2024-08-09 16:49:18 INFO Server is going down. Cleaning up...

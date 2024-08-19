@@ -249,8 +249,8 @@ def load_plugins_config(safeeyes_config):
         config["id"] = plugin["id"]
         config["icon"] = icon
         config["enabled"] = plugin["enabled"]
-        for setting in config["settings"]:
-            setting["safeeyes_config"] = plugin["settings"]
+        config["active_plugin_config"] = plugin.get("settings")
+
         configs.append(config)
     return configs
 
@@ -666,24 +666,6 @@ def open_session():
     if session is None:
         session = {"plugin": {}}
     return session
-
-
-def create_gtk_builder(glade_file):
-    """Create a Gtk builder and load the glade file."""
-    builder = Gtk.Builder()
-    builder.set_translation_domain("safeeyes")
-    builder.add_from_file(glade_file)
-    # Tranlslate all sub components
-    for obj in builder.get_objects():
-        if (not isinstance(obj, Gtk.SeparatorMenuItem)) and hasattr(obj, "get_label"):
-            label = obj.get_label()
-            if label is not None:
-                obj.set_label(_(label))
-        elif hasattr(obj, "get_title"):
-            title = obj.get_title()
-            if title is not None:
-                obj.set_title(_(title))
-    return builder
 
 
 def load_and_scale_image(path, width, height):

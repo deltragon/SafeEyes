@@ -24,7 +24,6 @@ import re
 
 from safeeyes import utility
 from safeeyes.model import State
-from safeeyes.translations import translate as _
 
 """
 Safe Eyes smart pause plugin
@@ -113,7 +112,7 @@ def __gnome_wayland_idle_time():
                 "org.gnome.Mutter.IdleMonitor.GetIdletime",
             ]
         )
-        return int(re.search(rb"\d+$", output).group(0)) / 1000
+        return int(re.search(rb"\d+$", output).group(0)) / 1000 # type: ignore
     except BaseException as e:
         logging.warning("Failed to get system idle time for gnome/wayland.")
         logging.warning(str(e))

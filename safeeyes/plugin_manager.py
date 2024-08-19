@@ -258,6 +258,9 @@ class PluginManager:
                 # The plugin is already enabled or partially loaded due to
                 # break_override_allowed
 
+                # Use the existing plugin object
+                plugin_obj = self.__plugins[plugin["id"]]
+
                 # Validate the dependencies again
                 if utility.check_plugin_dependencies(
                     plugin["id"], plugin_config, plugin.get("settings", {}), plugin_path
@@ -277,9 +280,6 @@ class PluginManager:
                     utility.remove_if_exists(self.__widget_plugins, plugin_obj)
                     utility.remove_if_exists(self.__tray_actions_plugins, plugin_obj)
                     del self.__plugins[plugin["id"]]
-
-                # Use the existing plugin object
-                plugin_obj = self.__plugins[plugin["id"]]
 
                 # Update the config
                 plugin_obj["config"] = dict(plugin.get("settings", {}))

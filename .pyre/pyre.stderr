@@ -1,0 +1,272 @@
+2024-08-09 16:45:07,706 [PID 24919] INFO Waiting for server...
+2024-08-09 16:45:07,707 [PID 24919] INFO Cannot find a running Pyre server. Starting a new one...
+2024-08-09 16:45:07,707 [PID 24919] INFO No binary specified, looking for `pyre.bin` in PATH
+2024-08-09 16:45:07,707 [PID 24919] INFO Pyre binary is located at `/home/mel/.pyenv/versions/safeeyes/bin/pyre.bin`
+2024-08-09 16:45:07,709 [PID 24919] INFO Could not determine the number of Pyre workers from configuration. Auto-set the value to 1.
+2024-08-09 16:45:07,709 [PID 24919] INFO Consider setting the `--sequential` flag instead when the number of parallel workers is not greater than 1.
+2024-08-09 16:45:07,730 [PID 24919] INFO No typeshed specified, looking for it...
+2024-08-09 16:45:07,731 [PID 24919] INFO Found: `/home/mel/.pyenv/versions/safeeyes/lib/pyre_check/typeshed`
+2024-08-09 16:45:07,732 [PID 24919] INFO Starting server at `/home/mel/workspace/SafeEyes`...
+2024-08-09 16:45:07,733 [PID 24919] INFO Writing arguments into /tmp/pyre_arguments_8n1v3v43.json...
+2024-08-09 16:45:07,733 [PID 24919] DEBUG Arguments:
+{
+  "source_paths": {
+    "kind": "simple",
+    "paths": [
+      "/home/mel/workspace/SafeEyes$safeeyes"
+    ]
+  },
+  "search_paths": [
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$black",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$attr",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$cairo",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$gi-stubs",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$marshmallow",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$ninja",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$immutabledict",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$testslide",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$pyproject_hooks",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$pyparsing",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$charset_normalizer",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$build",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$msgspec",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$pathspec",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$libcst",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$platformdirs",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$pyright",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$typeguard",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$attrs",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$babel",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$dataclasses_json",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$jinja2",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$isort",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$packaging",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$markupsafe",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$pip",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$click",
+    "/home/mel/.pyenv/versions/safeeyes/lib/pyre_check/typeshed/stdlib",
+    "/home/mel/.pyenv/versions/safeeyes/lib/pyre_check/typeshed/stubs/ExifRead",
+    "/home/mel/.pyenv/versions/safeeyes/lib/pyre_check/typeshed/stubs/Pillow",
+    "/home/mel/.pyenv/versions/safeeyes/lib/pyre_check/typeshed/stubs/PyMySQL",
+    "/home/mel/.pyenv/versions/safeeyes/lib/pyre_check/typeshed/stubs/PyYAML",
+    "/home/mel/.pyenv/versions/safeeyes/lib/pyre_check/typeshed/stubs/aiofiles",
+    "/home/mel/.pyenv/versions/safeeyes/lib/pyre_check/typeshed/stubs/boto",
+    "/home/mel/.pyenv/versions/safeeyes/lib/pyre_check/typeshed/stubs/chevron",
+    "/home/mel/.pyenv/versions/safeeyes/lib/pyre_check/typeshed/stubs/colorama",
+    "/home/mel/.pyenv/versions/safeeyes/lib/pyre_check/typeshed/stubs/ldap3",
+    "/home/mel/.pyenv/versions/safeeyes/lib/pyre_check/typeshed/stubs/mysqlclient",
+    "/home/mel/.pyenv/versions/safeeyes/lib/pyre_check/typeshed/stubs/paramiko",
+    "/home/mel/.pyenv/versions/safeeyes/lib/pyre_check/typeshed/stubs/psycopg2",
+    "/home/mel/.pyenv/versions/safeeyes/lib/pyre_check/typeshed/stubs/pycurl",
+    "/home/mel/.pyenv/versions/safeeyes/lib/pyre_check/typeshed/stubs/python-dateutil",
+    "/home/mel/.pyenv/versions/safeeyes/lib/pyre_check/typeshed/stubs/pytz",
+    "/home/mel/.pyenv/versions/safeeyes/lib/pyre_check/typeshed/stubs/regex",
+    "/home/mel/.pyenv/versions/safeeyes/lib/pyre_check/typeshed/stubs/requests",
+    "/home/mel/.pyenv/versions/safeeyes/lib/pyre_check/typeshed/stubs/retry",
+    "/home/mel/.pyenv/versions/safeeyes/lib/pyre_check/typeshed/stubs/tqdm",
+    "/home/mel/.pyenv/versions/safeeyes/lib/pyre_check/typeshed/stubs/ujson"
+  ],
+  "excludes": [],
+  "checked_directory_allowlist": [
+    "/home/mel/workspace/SafeEyes/safeeyes"
+  ],
+  "checked_directory_blocklist": [],
+  "extensions": [],
+  "log_path": "/home/mel/workspace/SafeEyes/.pyre",
+  "global_root": "/home/mel/workspace/SafeEyes",
+  "debug": false,
+  "python_version": {
+    "major": 3,
+    "minor": 12,
+    "micro": 3
+  },
+  "shared_memory": {},
+  "parallel": true,
+  "number_of_workers": 1,
+  "strict": false,
+  "socket_path": "/tmp/pyre_server_0cd21fb830d4d73b.sock",
+  "show_error_traces": false,
+  "additional_logging_sections": [
+    "server"
+  ],
+  "watchman_root": "/home/mel/workspace/SafeEyes",
+  "taint_model_paths": [],
+  "store_type_check_resolution": false,
+  "critical_files": [
+    {
+      "full_path": "/home/mel/workspace/SafeEyes/.pyre_configuration"
+    }
+  ],
+  "skip_initial_type_check": false,
+  "use_lazy_module_tracking": false,
+  "analyze_external_sources": false,
+  "use_errpy_parser": false
+}
+2024-08-09 16:45:07,735 [PID 24919] INFO Server is starting in the background.
+
+2024-08-09 16:45:07,777 [PID 24919] INFO  Initializing file watching service...
+2024-08-09 16:45:07,777 [PID 24919] INFO  Connecting to watchman...
+2024-08-09 16:45:07,778 [PID 24919] INFO  Established watchman connection.
+2024-08-09 16:45:07,778 [PID 24919] INFO  Request watchman subscription at /home/mel/workspace/SafeEyes
+2024-08-09 16:45:07,788 [PID 24919] INFO  Initializing shared memory (heap_size: 8589934592, dep_table_pow: 27, hash_table_pow: 26)
+2024-08-09 16:45:07,789 [PID 24919] INFO  Server has started listening on socket `/tmp/pyre_server_0cd21fb830d4d73b.sock`
+2024-08-09 16:45:07,789 [PID 24919] INFO  Initializing server state from scratch...
+2024-08-09 16:45:07,789 [PID 24919] INFO  Building module tracker...
+2024-08-09 16:45:07,992 [PID 24919] PERFORMANCE  Module tracker built: 0.200s
+2024-08-09 16:45:08,094 [PID 24919] PERFORMANCE  Full environment built: 0.308s
+2024-08-09 16:45:08,094 [PID 24919] INFO  Collecting all definitions...
+2024-08-09 16:45:08,328 [PID 24919] PERFORMANCE  Collected definitions (defines: 406): 0.227s
+2024-08-09 16:45:08,328 [PID 24919] INFO  Checking 406 functions...
+2024-08-09 16:45:14,495 [PID 24919] INFO  Processed 204 of 406 functions
+2024-08-09 16:45:15,816 [PID 24919] INFO  Processed 406 of 406 functions
+2024-08-09 16:45:15,817 [PID 24919] PERFORMANCE  Check_TypeCheck: 7.493s
+2024-08-09 16:45:15,817 [PID 24919] MEMORY  Shared memory size post-typecheck (size: 8)
+2024-08-09 16:45:15,817 [PID 24919] INFO  Postprocessing 36 sources...
+2024-08-09 16:45:15,849 [PID 24919] INFO Waiting for server...
+2024-08-09 16:45:15,890 [PID 24919] ERROR Found 7 type errors!
+2024-08-09 16:45:15,891 [PID 24919] INFO  Repopulating the environment...
+2024-08-09 16:47:27,562 [PID 26026] INFO Waiting for server...
+2024-08-09 16:47:27,564 [PID 26026] ERROR Found 6 type errors!
+2024-08-09 16:47:51,459 [PID 26342] INFO Waiting for server...
+2024-08-09 16:47:51,462 [PID 26342] ERROR Found 6 type errors!
+2024-08-09 16:48:09,316 [PID 26654] INFO Waiting for server...
+2024-08-09 16:48:09,318 [PID 26654] ERROR Found 6 type errors!
+2024-08-09 16:48:27,852 [PID 26978] INFO Waiting for server...
+2024-08-09 16:48:27,854 [PID 26978] ERROR Found 4 type errors!
+2024-08-09 16:48:42,658 [PID 27090] INFO Waiting for server...
+2024-08-09 16:48:42,660 [PID 27090] ERROR Found 4 type errors!
+2024-08-09 16:49:18,526 [PID 27308] INFO Stopping classic server...
+2024-08-09 16:49:18,527 [PID 27308] INFO Socket is /tmp/pyre_server_0cd21fb830d4d73b.sock
+2024-08-09 16:49:18,542 [PID 27308] INFO Stopped classic server at `/home/mel/workspace/SafeEyes`
+
+2024-08-09 16:49:18,543 [PID 27308] INFO Waiting for server...
+2024-08-09 16:49:18,543 [PID 27308] INFO Cannot find a running Pyre server. Starting a new one...
+2024-08-09 16:49:18,544 [PID 27308] INFO No binary specified, looking for `pyre.bin` in PATH
+2024-08-09 16:49:18,544 [PID 27308] INFO Pyre binary is located at `/home/mel/.pyenv/versions/safeeyes/bin/pyre.bin`
+2024-08-09 16:49:18,545 [PID 27308] INFO Could not determine the number of Pyre workers from configuration. Auto-set the value to 1.
+2024-08-09 16:49:18,545 [PID 27308] INFO Consider setting the `--sequential` flag instead when the number of parallel workers is not greater than 1.
+2024-08-09 16:49:18,550 [PID 27308] INFO No typeshed specified, looking for it...
+2024-08-09 16:49:18,550 [PID 27308] INFO Found: `/home/mel/.pyenv/versions/safeeyes/lib/pyre_check/typeshed`
+2024-08-09 16:49:18,552 [PID 27308] INFO Starting server at `/home/mel/workspace/SafeEyes`...
+2024-08-09 16:49:18,552 [PID 27308] INFO Writing arguments into /tmp/pyre_arguments_rhz6mcd8.json...
+2024-08-09 16:49:18,553 [PID 27308] DEBUG Arguments:
+{
+  "source_paths": {
+    "kind": "simple",
+    "paths": [
+      "/home/mel/workspace/SafeEyes$safeeyes"
+    ]
+  },
+  "search_paths": [
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$pyparsing",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$pyright",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$attrs",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$marshmallow",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$pyproject_hooks",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$typeguard",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$ninja",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$markupsafe",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$attr",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$platformdirs",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$black",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$libcst",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$msgspec",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$croniter-stubs",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$pathspec",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$babel",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$immutabledict",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$build",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$packaging",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$cairo",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$dataclasses_json",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$charset_normalizer",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$click",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$Xlib-stubs",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$jinja2",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$testslide",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$isort",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$psutil-stubs",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$gi-stubs",
+    "/home/mel/.pyenv/versions/safeeyes/lib/python3.12/site-packages$pip",
+    "/home/mel/.pyenv/versions/safeeyes/lib/pyre_check/typeshed/stdlib",
+    "/home/mel/.pyenv/versions/safeeyes/lib/pyre_check/typeshed/stubs/ExifRead",
+    "/home/mel/.pyenv/versions/safeeyes/lib/pyre_check/typeshed/stubs/Pillow",
+    "/home/mel/.pyenv/versions/safeeyes/lib/pyre_check/typeshed/stubs/PyMySQL",
+    "/home/mel/.pyenv/versions/safeeyes/lib/pyre_check/typeshed/stubs/PyYAML",
+    "/home/mel/.pyenv/versions/safeeyes/lib/pyre_check/typeshed/stubs/aiofiles",
+    "/home/mel/.pyenv/versions/safeeyes/lib/pyre_check/typeshed/stubs/boto",
+    "/home/mel/.pyenv/versions/safeeyes/lib/pyre_check/typeshed/stubs/chevron",
+    "/home/mel/.pyenv/versions/safeeyes/lib/pyre_check/typeshed/stubs/colorama",
+    "/home/mel/.pyenv/versions/safeeyes/lib/pyre_check/typeshed/stubs/ldap3",
+    "/home/mel/.pyenv/versions/safeeyes/lib/pyre_check/typeshed/stubs/mysqlclient",
+    "/home/mel/.pyenv/versions/safeeyes/lib/pyre_check/typeshed/stubs/paramiko",
+    "/home/mel/.pyenv/versions/safeeyes/lib/pyre_check/typeshed/stubs/psycopg2",
+    "/home/mel/.pyenv/versions/safeeyes/lib/pyre_check/typeshed/stubs/pycurl",
+    "/home/mel/.pyenv/versions/safeeyes/lib/pyre_check/typeshed/stubs/python-dateutil",
+    "/home/mel/.pyenv/versions/safeeyes/lib/pyre_check/typeshed/stubs/pytz",
+    "/home/mel/.pyenv/versions/safeeyes/lib/pyre_check/typeshed/stubs/regex",
+    "/home/mel/.pyenv/versions/safeeyes/lib/pyre_check/typeshed/stubs/requests",
+    "/home/mel/.pyenv/versions/safeeyes/lib/pyre_check/typeshed/stubs/retry",
+    "/home/mel/.pyenv/versions/safeeyes/lib/pyre_check/typeshed/stubs/tqdm",
+    "/home/mel/.pyenv/versions/safeeyes/lib/pyre_check/typeshed/stubs/ujson"
+  ],
+  "excludes": [],
+  "checked_directory_allowlist": [
+    "/home/mel/workspace/SafeEyes/safeeyes"
+  ],
+  "checked_directory_blocklist": [],
+  "extensions": [],
+  "log_path": "/home/mel/workspace/SafeEyes/.pyre",
+  "global_root": "/home/mel/workspace/SafeEyes",
+  "debug": false,
+  "python_version": {
+    "major": 3,
+    "minor": 12,
+    "micro": 3
+  },
+  "shared_memory": {},
+  "parallel": true,
+  "number_of_workers": 1,
+  "strict": false,
+  "socket_path": "/tmp/pyre_server_0cd21fb830d4d73b.sock",
+  "show_error_traces": false,
+  "additional_logging_sections": [
+    "server"
+  ],
+  "watchman_root": "/home/mel/workspace/SafeEyes",
+  "taint_model_paths": [],
+  "store_type_check_resolution": false,
+  "critical_files": [
+    {
+      "full_path": "/home/mel/workspace/SafeEyes/.pyre_configuration"
+    }
+  ],
+  "skip_initial_type_check": false,
+  "use_lazy_module_tracking": false,
+  "analyze_external_sources": false,
+  "use_errpy_parser": false
+}
+2024-08-09 16:49:18,555 [PID 27308] INFO Server is starting in the background.
+
+2024-08-09 16:49:18,597 [PID 27308] INFO  Initializing file watching service...
+2024-08-09 16:49:18,598 [PID 27308] INFO  Connecting to watchman...
+2024-08-09 16:49:18,598 [PID 27308] INFO  Established watchman connection.
+2024-08-09 16:49:18,598 [PID 27308] INFO  Request watchman subscription at /home/mel/workspace/SafeEyes
+2024-08-09 16:49:18,608 [PID 27308] INFO  Initializing shared memory (heap_size: 8589934592, dep_table_pow: 27, hash_table_pow: 26)
+2024-08-09 16:49:18,609 [PID 27308] INFO  Server has started listening on socket `/tmp/pyre_server_0cd21fb830d4d73b.sock`
+2024-08-09 16:49:18,609 [PID 27308] INFO  Initializing server state from scratch...
+2024-08-09 16:49:18,609 [PID 27308] INFO  Building module tracker...
+2024-08-09 16:49:18,826 [PID 27308] PERFORMANCE  Module tracker built: 0.217s
+2024-08-09 16:49:18,927 [PID 27308] PERFORMANCE  Full environment built: 0.317s
+2024-08-09 16:49:18,927 [PID 27308] INFO  Collecting all definitions...
+2024-08-09 16:49:19,131 [PID 27308] PERFORMANCE  Collected definitions (defines: 406): 0.204s
+2024-08-09 16:49:19,131 [PID 27308] INFO  Checking 406 functions...
+2024-08-09 16:49:25,129 [PID 27308] INFO  Processed 204 of 406 functions
+2024-08-09 16:49:26,530 [PID 27308] INFO  Processed 406 of 406 functions
+2024-08-09 16:49:26,531 [PID 27308] PERFORMANCE  Check_TypeCheck: 7.402s
+2024-08-09 16:49:26,531 [PID 27308] MEMORY  Shared memory size post-typecheck (size: 8)
+2024-08-09 16:49:26,531 [PID 27308] INFO  Postprocessing 36 sources...
+2024-08-09 16:49:26,542 [PID 27308] INFO Waiting for server...
+2024-08-09 16:49:26,544 [PID 27308] SUCCESS No type errors found
+2024-08-09 16:49:30,602 [PID 27423] INFO Waiting for server...
+2024-08-09 16:49:30,603 [PID 27423] SUCCESS No type errors found

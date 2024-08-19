@@ -25,6 +25,7 @@ from safeeyes import utility
 
 _translations = gettext.NullTranslations()
 
+
 def setup():
     global _translations
     _translations = gettext.translation(
@@ -43,6 +44,7 @@ def setup():
         )
 
     return _translations
+
 
 def translate(message: str) -> str:
     """Translate the message using the current translator."""

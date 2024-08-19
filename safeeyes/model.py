@@ -102,14 +102,20 @@ class BreakQueue:
             last_break = context["session"].get("break")
             if last_break is not None:
                 current_break = self.get_break()
-                if last_break != current_break.name:
+                if current_break is None or last_break != current_break.name:
                     brk = self.next()
-                    while brk != current_break and brk is not None and brk.name != last_break:
+                    while (
+                        brk != current_break
+                        and brk is not None
+                        and brk.name != last_break
+                    ):
                         brk = self.next()
 
     def get_break(self, break_type=None):
         if self.__current_break is None:
             self.__current_break = self.next()
+        if self.__current_break is None:
+            return None
 
         if break_type is None or self.__current_break.type == break_type:
             return self.__current_break
@@ -142,8 +148,11 @@ class BreakQueue:
                 self.__build_longs()
         elif self.__current_break:
             # Reduce the break time from the next long break (default)
-            if longs:
-                longs[self.__current_long].time -= shorts[self.__current_short].time
+            if longs and shorts:
+                l = longs[self.__current_long]
+                s = shorts[self.__current_short]
+                if l and s:
+                    l.time -= s.time
             if self.__current_short == 0 and self.__is_random_order:
                 self.__build_shorts()
 
@@ -156,7 +165,7 @@ class BreakQueue:
             break_obj = self.__next_short()
         elif (
             break_type == BreakType.LONG_BREAK
-            or longs[self.__current_long].time <= shorts[self.__current_short].time
+            or getattr(longs[self.__current_long], "time") <= getattr(shorts[self.__current_short], "time")
         ):
             break_obj = self.__next_long()
         else:
