@@ -25,6 +25,7 @@ import logging
 from safeeyes import utility
 import threading
 import time
+import typing
 
 """
 Safe Eyes tray icon plugin
@@ -162,8 +163,10 @@ class DBusMenuService(DBusService):
 
     revision = 0
 
-    items = []
-    idToItems = {}
+    # TODO: replace dict here with more exact typing for item
+    items: list[dict] = []
+    # TODO: replace dict here with more exact typing for item
+    idToItems: dict[str, dict] = {}
 
     def __init__(self, session_bus, context, items):
         super().__init__(
@@ -345,7 +348,7 @@ class StatusNotifierItemService(DBusService):
     Status = 'Active'
     IconName = 'io.github.slgobinath.SafeEyes-enabled'
     IconThemePath = ''
-    ToolTip = ('', [], 'Safe Eyes', '')
+    ToolTip: tuple[str, list[typing.Any], str, str] = ('', [], 'Safe Eyes', '')
     ItemIsMenu = True
     Menu = None
 

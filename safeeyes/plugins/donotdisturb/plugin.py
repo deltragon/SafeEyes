@@ -18,7 +18,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 Skip Fullscreen plugin skips the break if the active window is fullscreen.
-NOTE: Do not remove the unused import 'GdkX11' because it is required in Ubuntu 14.04
 """
 
 import os
@@ -29,13 +28,12 @@ import subprocess
 import gi
 gi.require_version('Gdk', '3.0')
 from gi.repository import Gdk
-from gi.repository import GdkX11  # noqa F401
 from gi.repository import Gio
 from safeeyes import utility
 
 context = None
-skip_break_window_classes = []
-take_break_window_classes = []
+skip_break_window_classes: list[str] = []
+take_break_window_classes: list[str] = []
 unfullscreen_allowed = True
 dnd_while_on_battery = False
 
