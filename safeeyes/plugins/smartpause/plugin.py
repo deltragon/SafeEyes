@@ -102,7 +102,8 @@ def __gnome_wayland_idle_time():
             '/org/gnome/Mutter/IdleMonitor/Core',
             'org.gnome.Mutter.IdleMonitor.GetIdletime'
         ])
-        return int(re.search(rb'\d+$', output).group(0)) / 1000
+        # ignoring type here as we catch the exception anyways
+        return int(re.search(rb'\d+$', output).group(0)) / 1000 # type: ignore
     except BaseException as e:
         logging.warning("Failed to get system idle time for gnome/wayland.")
         logging.warning(str(e))

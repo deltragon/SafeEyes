@@ -25,6 +25,7 @@ from safeeyes.translations import translate as _
 
 context = None
 no_of_skipped_breaks = 0
+no_allowed_skips = 0
 session = None
 enabled = True
 
