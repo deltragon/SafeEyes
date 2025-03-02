@@ -1,5 +1,6 @@
 %global version 2.2.3
-%global forgeurl https://github.com/slgobinath/SafeEyes
+%global forgeurl https://github.com/deltragon/SafeEyes
+%global commit c28a0ce71803d4ba71c05b976c811d82dd88ce19
 
 %global debug_package %{nil}
 
@@ -13,10 +14,13 @@ Summary:        Protect your eyes from eye strain using this continuous breaks r
 License:        GPL-3.0-or-later
 URL:            %{forgeurl}
 Source:         %{forgesource}
+
+BuildArch:      noarch
 BuildRequires:  python3-devel
 BuildRequires:  pyproject-rpm-macros
+BuildRequires:  gettext
 Requires:       gtk3
-Requires:       libnotify
+#Requires:       libnotify
 Requires:       python3dist(babel)
 Requires:       python3dist(croniter)
 Requires:       python3dist(packaging)
@@ -41,6 +45,8 @@ ${summary}
 
 %install
 %pyproject_install
+# not sure if this is needed - the .mo files are already installed into python3_sitelib
+# % find_lang % {name}
 
 
 %check
@@ -51,7 +57,7 @@ ${summary}
 %{_bindir}/safeeyes
 %{python3_sitelib}/safeeyes
 %{python3_sitelib}/safeeyes-%{version}.dist-info
-%{_datarootdir}/applications/safeeyes.desktop
+#% {_datarootdir}/applications/safeeyes.desktop
 
 
 %changelog
